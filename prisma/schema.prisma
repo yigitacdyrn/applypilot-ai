@@ -71,16 +71,19 @@ model Application {
 }
 
 model AnalysisResult {
-  id            String      @id @default(cuid())
-  matchScore    Int?
-  matchedSkills String[]
-  missingSkills String[]
-  summary       String?
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
+  id                    String      @id @default(cuid())
+  matchScore            Int?
+  matchedSkills         String[]
+  missingSkills         String[]
+  summary               String?
+  aiSummary             String?
+  improvementSuggestion String?
+  interviewFocus        String?
+  createdAt             DateTime    @default(now())
+  updatedAt             DateTime    @updatedAt
 
-  applicationId String      @unique
-  application   Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  applicationId         String      @unique
+  application           Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
 }
 
 enum ApplicationStatus {

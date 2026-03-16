@@ -43,3 +43,6 @@ next-env.d.ts
 /app/generated/prisma
 
 uploads
+.env*
+.next
+node_modules

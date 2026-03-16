@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ApplyPilot AI
 
-## Getting Started
+ApplyPilot AI is a full-stack job application management platform designed to help users organize their job search process, manage resumes, and analyze resume-job description compatibility through rule-based and AI-assisted matching features.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Track job applications in a Kanban-style workflow
+- Manage application statuses:
+  - Saved
+  - Applied
+  - Interview
+  - Rejected
+  - Offer
+- Upload resumes in PDF format
+- Extract text from uploaded resumes
+- Link a specific resume to a specific application
+- Analyze compatibility between a resume and a job description
+- View:
+  - Match score
+  - Matched skills
+  - Missing skills
+  - AI-generated summary
+  - Improvement suggestion
+  - Interview focus recommendation
+- Monitor progress through a dashboard with summary metrics
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Frontend
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Backend
+- Next.js App Router
+- API Routes
+- Prisma ORM
 
-## Learn More
+### Database
+- Prisma Postgres (local development)
 
-To learn more about Next.js, take a look at the following resources:
+### AI / Analysis
+- Rule-based skill matching
+- Google Gemini API for AI-generated insights
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Pages
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Home
+Landing page for navigating through the application.
 
-## Deploy on Vercel
+### Dashboard
+Provides an overview of:
+- total applications
+- interviews
+- offers
+- average match score
+- recent applications
+- top match applications
+- resume coverage
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Applications
+Kanban-style job application board where users can:
+- view all applications by status
+- update status
+- run match analysis
+- review analysis results and AI insights
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### New Application
+Create a new application by entering:
+- company name
+- job title
+- linked resume
+- job link
+- job description
+- notes
+
+### Resumes
+Upload and manage resume files, and inspect extracted text used in analysis.
+
+## How the Analysis Works
+
+The system performs two levels of evaluation:
+
+### 1. Rule-Based Matching
+The application compares extracted resume text with the job description and calculates:
+- match score
+- matched skills
+- missing skills
+
+### 2. AI-Assisted Analysis
+Google Gemini generates:
+- a short professional summary
+- one improvement suggestion
+- one interview preparation focus point
+
+```md
+GitHub: https://github.com/yigitacdyrn
+LinkedIn: https://www.linkedin.com/in/mehmetyiğitaçdoyuran/

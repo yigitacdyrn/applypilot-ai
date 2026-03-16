@@ -38,7 +38,7 @@ export default function AnalyzeButton({
       type="button"
       onClick={handleAnalyze}
       disabled={loading}
-      className="btn-danger mt-4"
+      className="mt-3 inline-flex w-full items-center justify-center rounded-2xl bg-red-600 px-4 py-3 text-sm font-extrabold text-white shadow-md transition hover:bg-red-700 disabled:opacity-50"
     >
       {loading ? "Analyzing..." : "Analyze Match"}
     </button>

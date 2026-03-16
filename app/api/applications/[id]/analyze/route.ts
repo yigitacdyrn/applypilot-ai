@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "../../../../../lib/prisma";
 import { analyzeResumeMatch } from "../../../../../lib/analizer";
+import { generateAISummary } from "../../../../../lib/gemini";
 
 export async function POST(
   req: Request,
@@ -37,6 +38,16 @@ export async function POST(
       application.jobPost.description
     );
 
+    const aiResult = await generateAISummary({
+      jobTitle: application.jobPost.title,
+      company: application.jobPost.company,
+      jobDescription: application.jobPost.description,
+      resumeText: application.resume.extractedText,
+      matchedSkills: result.matchedSkills,
+      missingSkills: result.missingSkills,
+      matchScore: result.matchScore,
+    });
+
     const analysis = application.analysis
       ? await prisma.analysisResult.update({
           where: { applicationId: application.id },
@@ -45,6 +56,9 @@ export async function POST(
             matchedSkills: result.matchedSkills,
             missingSkills: result.missingSkills,
             summary: result.summary,
+            aiSummary: aiResult.summary,
+            improvementSuggestion: aiResult.improvementSuggestion,
+            interviewFocus: aiResult.interviewFocus,
           },
         })
       : await prisma.analysisResult.create({
@@ -54,6 +68,9 @@ export async function POST(
             matchedSkills: result.matchedSkills,
             missingSkills: result.missingSkills,
             summary: result.summary,
+            aiSummary: aiResult.summary,
+            improvementSuggestion: aiResult.improvementSuggestion,
+            interviewFocus: aiResult.interviewFocus,
           },
         });
 
